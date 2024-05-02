@@ -28,7 +28,7 @@ const NavButton = ({ title, customFunc, icon, color, dotColor }) => (
 );
 
 const Navbar = () => {
-  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize } = useStateContext();
+  const { currentColor, activeMenu, setActiveMenu, handleClick, isClicked, setScreenSize, screenSize, cartDropDown, cartDisplay } = useStateContext();
 
   useEffect(() => {
     const handleResize = () => setScreenSize(window.innerWidth);
@@ -71,14 +71,14 @@ const Navbar = () => {
             <p>
               <span className="text-gray-400 text-14">Hi,</span>{' '}
               <span className="text-gray-400 font-bold ml-1 text-14">
-                Michael
+                Miracle
               </span>
             </p>
             <MdKeyboardArrowDown className="text-gray-400 text-14" />
           </div>
         </TooltipComponent>
 
-        {isClicked.cart && (<Cart />)}
+        {isClicked.cart && (cartDisplay &&<Cart />)}
         {isClicked.chat && (<Chat />)}
         {isClicked.notification && (<Notification />)}
         {isClicked.userProfile && (<UserProfile />)}

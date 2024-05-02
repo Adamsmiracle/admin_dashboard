@@ -9,7 +9,7 @@ import { links } from '../data/dummy';
 import Button from "./Button";
 
 const Sidebar = () => {
-  const { activeMenu, setActiveMenu, screenSize } = useStateContext();
+  const { activeMenu, setActiveMenu, screenSize, currentColor } = useStateContext();
 
   const handleCloseSideBar = () => {
     if (activeMenu && screenSize <= 900) {
@@ -23,7 +23,8 @@ const Sidebar = () => {
   const normalLink = `flex items-center gap-5 
   pl-4 pt-3 pb-2.5 rounded-lg text-md text-gray-700 dark:text-gray-200 dark:hover:text-black hover:bg-light-gray m-2`
 
-  return (<div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
+  return (
+    <div className="ml-3 h-screen md:overflow-hidden overflow-auto md:hover:overflow-auto pb-10">
     {activeMenu && (<>
       <div className="flex justify-between items-center">
         <Link to='/' onClick={() => handleCloseSideBar} className="items-center justify-between gap-3 ml-3 mt-4 flex text-xl font-extrabold tracking-tight text-slate-900 dark:text-white">
@@ -32,7 +33,7 @@ const Sidebar = () => {
         <TooltipComponent content="Menu" position="BottomCenter">
           <button type='button'
             onClick={() => setActiveMenu((prevActiveMenu => !prevActiveMenu))}
-            className="text-xl p-3 rounded-full hover:bg-light-gray mt-4 hidden md:block">
+            className="text-xl p-3 rounded-full hover:bg-light-gray mt-4  md:block">
             <MdOutlineCancel />
           </button>
         </TooltipComponent>
@@ -50,6 +51,11 @@ const Sidebar = () => {
                 to={`/${link.name}`}
                 key={`${link.name}`}
                 onClick={() => handleCloseSideBar}
+
+                style={({isActive}) => ({
+                  backgroundColor : isActive ? currentColor: ''
+                })}
+          
                 className={({ isActive }) => 
                 isActive ? activeLink : normalLink}
               >

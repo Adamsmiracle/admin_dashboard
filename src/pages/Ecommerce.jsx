@@ -9,6 +9,8 @@ import { data } from "autoprefixer";
 
 
 const Ecommerce = () => {
+  const {currentColor} = useStateContext()
+
   return(
   <div className="mt-24">
     <div className="flex flex-wrap lg:flex-nowrap justify-center">
@@ -27,7 +29,7 @@ const Ecommerce = () => {
           <div className="mt-6">
             <Button
               color="white"
-              bgColor="blue"
+              bgColor={currentColor}
               text="Download"
               borderRadius="10px"
               size="md"
@@ -37,10 +39,10 @@ const Ecommerce = () => {
 
 
        {/* Cards */}
-        <div className="flex items-center  m-3 flex-wrap justify-center gap-2 border-color">
+        <div className="flex items-center  m-3 flex-wrap justify-center gap-2">
           {earningData.map((item) => (
             <div key={item.title} className="bg-white dark:text-gray-200
-            dark:bg-secondary-dark-bg md:w-80 rounded-e-2xl p-4 pt-9">
+            dark:bg-secondary-dark-bg md:w-40 rounded-e-2xl p-4 pt-9">
               <button
                 type="button"
                 style={{ color: item.iconColor, backgroundColor: item.iconBg}}
@@ -102,14 +104,14 @@ const Ecommerce = () => {
 
                 {/* Sparkline component*/}
               <div className="mt-5">
-                <SparkLine currentColor='blue' id="line-sparkLine" type="Line" height="80px" width="250px" data={SparklineAreaData} color='blue' />
+                <SparkLine currentColor={currentColor} id="line-sparkLine" type="Line" height="80px" width="250px" data={SparklineAreaData} color={currentColor} />
               </div>
 
                 {/* Button */}
               <div className="mt-10">
                 <Button
                   color="white"
-                  bgColor='blue'
+                  bgColor={currentColor}
                   text="Download Report"
                   borderRadius='10px'
                 />
